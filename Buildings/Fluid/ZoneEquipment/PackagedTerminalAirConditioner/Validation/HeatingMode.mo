@@ -283,10 +283,14 @@ model HeatingMode
     "Fan power consumption (EnergyPlus)"
     annotation (Placement(transformation(extent={{200,-134},{220,-114}})));
 
-  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea[2]
+  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea
     "Convert enable signal to real value"
     annotation (Placement(transformation(extent={{-52,-84},{-32,-64}})));
 
+  Modelica.Blocks.Math.Division division
+    annotation (Placement(transformation(extent={{-92,-6},{-72,14}})));
+  Modelica.Blocks.Sources.RealExpression Nominal_mass_flow(y=0.50747591)
+    annotation (Placement(transformation(extent={{-132,-12},{-112,8}})));
 equation
   connect(ava.y, conCycFanCycCoi.uAva) annotation (Line(points={{-108,-50},{-100,
           -50},{-100,-68},{-86,-68}},           color={255,0,255}));
@@ -370,14 +374,6 @@ equation
     annotation (Line(points={{221,-88},{232,-88}},   color={0,0,127}));
   connect(realExpression18.y, powFanEP.u)
     annotation (Line(points={{221,-124},{232,-124}}, color={0,0,127}));
-  connect(conCycFanCycCoi.yFan, booToRea[1].u)
-    annotation (Line(points={{-62,-74},{-54,-74}}, color={255,0,255}));
-  connect(booToRea[1].y, ptac.uFan) annotation (Line(points={{-30,-74},{-24,-74},
-          {-24,4},{-18,4}}, color={0,0,127}));
-  connect(conCycFanCycCoi.yHeaEna, booToRea[2].u) annotation (Line(points={{-62,
-          -58},{-58,-58},{-58,-74},{-54,-74}}, color={255,0,255}));
-  connect(booToRea[2].y, ptac.uHea) annotation (Line(points={{-30,-74},{-24,-74},
-          {-24,-23.8},{-18,-23.8}}, color={0,0,127}));
   connect(datRea.y[23], K2C[1].u)
     annotation (Line(points={{-99,90},{-82,90}}, color={0,0,127}));
   connect(K2C[1].y, conCycFanCycCoi.THeaSet) annotation (Line(points={{-58,90},{
@@ -386,6 +382,16 @@ equation
     annotation (Line(points={{-99,90},{-82,90}}, color={0,0,127}));
   connect(K2C[2].y, conCycFanCycCoi.TCooSet) annotation (Line(points={{-58,90},{
           -52,90},{-52,-44},{-92,-44},{-92,-60},{-86,-60}}, color={0,0,127}));
+  connect(conCycFanCycCoi.yHeaEna, booToRea.u) annotation (Line(points={{-62,
+          -58},{-58,-58},{-58,-74},{-54,-74}}, color={255,0,255}));
+  connect(booToRea.y, ptac.uHea) annotation (Line(points={{-30,-74},{-24,-74},{
+          -24,-23.8},{-18,-23.8}}, color={0,0,127}));
+  connect(division.y, ptac.uFan)
+    annotation (Line(points={{-71,4},{-18,4}}, color={0,0,127}));
+  connect(datRea.y[27], division.u1) annotation (Line(points={{-99,90},{-94,90},
+          {-94,66},{-126,66},{-126,10},{-94,10}}, color={0,0,127}));
+  connect(Nominal_mass_flow.y, division.u2)
+    annotation (Line(points={{-111,-2},{-94,-2}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}})),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-140},{260,
