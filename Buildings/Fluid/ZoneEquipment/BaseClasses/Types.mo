@@ -136,6 +136,36 @@ First implementation.
 </li>
 </ul>
 </html>"));
+  type FanTypes = enumeration(
+      conSpeFan "Constant speed fan",
+      varSpeFan "Variable speed fan",
+      mulSpeFan "Multiple speed fan")
+    "Enumeration for the zonal HVAC fan types"
+      annotation (Documentation(info="<html>
+<p>
+Enumeration for the zone equipment fan types.
+The possible values are
+</p>
+<ol>
+<li>
+conSpeFan - Constant speed fan
+</li>
+<li>
+varSpeFan - Variable speed fan
+</li>
+<li>
+mulSpeFan - Multiple speed fan
+</li>
+</ol>
+</html>",
+  revisions="<html>
+<ul>
+<li>
+April 20, 2022 by Karthik Devaprasad:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 annotation (Documentation(info="<html>
 This package contains type definitions for zone HVAC equipment.
   </html>"));

@@ -100,7 +100,7 @@ block MultispeedFan
   Modelica.Blocks.Interfaces.RealInput TCooSet(
     final unit="K",
     displayUnit="degC",
-    final quantity="ThermodynamicTemperature") if have_coo
+    final quantity="ThermodynamicTemperature") if has_coo
     "Zone cooling temperature setpoint"
     annotation (Placement(transformation(extent={{-180,-20},{-140,20}}),
         iconTransformation(extent={{-180,40},{-140,80}})));
@@ -108,7 +108,7 @@ block MultispeedFan
   Modelica.Blocks.Interfaces.RealInput THeaSet(
     final unit="K",
     displayUnit="degC",
-    final quantity="ThermodynamicTemperature") if have_hea
+    final quantity="ThermodynamicTemperature") if has_hea
     "Zone heating temperature setpoint"
     annotation (Placement(transformation(extent={{-180,-60},{-140,-20}}),
         iconTransformation(extent={{-180,-20},{-140,20}})));
@@ -187,21 +187,21 @@ protected
 
   Buildings.Controls.OBC.CDL.Continuous.Hysteresis hysCoo(
     final uLow=-dTHys,
-    final uHigh=0) if have_coo
+    final uHigh=0) if has_coo
     "Enable cooling when zone temperature is higher than cooling setpoint"
     annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.Subtract subCoo if have_coo
+  Buildings.Controls.OBC.CDL.Continuous.Subtract subCoo if has_coo
     "Find difference between zone temperature and cooling setpoint"
     annotation (Placement(transformation(extent={{-120,30},{-100,50}})));
 
-  Buildings.Controls.OBC.CDL.Continuous.Subtract subHea if have_hea
+  Buildings.Controls.OBC.CDL.Continuous.Subtract subHea if has_hea
     "Find difference between zone temperature and heating setpoint"
     annotation (Placement(transformation(extent={{-120,-40},{-100,-20}})));
 
   Buildings.Controls.OBC.CDL.Continuous.Hysteresis hysHea(
     final uLow=-dTHys,
-    final uHigh=0) if have_hea
+    final uHigh=0) if has_hea
     "Enable heating when zone temperature is lower than heating setpoint"
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
 
