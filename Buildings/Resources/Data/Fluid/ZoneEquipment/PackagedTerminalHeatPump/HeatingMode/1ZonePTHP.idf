@@ -76,7 +76,7 @@ Fan:OnOff,
 !
 ! Floor Area:              232.25 m2
 ! Number of Stories:       1
-Version,22.2;
+Version,9.6;
 Timestep,60;
 
 Building,
@@ -1020,7 +1020,3 @@ Output:Variable,*,Heating Coil Runtime Fraction,Timestep;
 Output:Variable,*,Cooling Coil Total Cooling Rate,Timestep;
 Output:Variable,*,Cooling Coil Electricity Rate,Timestep;
 Output:Variable,*,Cooling Coil Runtime Fraction,Timestep;
-Output:Meter:MeterFileOnly,Electricity:Facility,monthly;
-Output:Meter:MeterFileOnly,Electricity:HVAC,monthly;
-Output:Meter:MeterFileOnly,Electricity:Facility,runperiod;
-Output:Meter:MeterFileOnly,Electricity:HVAC,runperiod;
