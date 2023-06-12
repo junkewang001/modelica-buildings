@@ -22,7 +22,7 @@ model WindowAC
       Placement(transformation(extent={{50,100},{70,120}})),
       Dialog(group="Fan parameters"));
 
-  replaceable parameter Buildings.Fluid.HeatExchangers.DXCoils.AirCooled.Data.Generic.DXCoil datCoi(
+  replaceable parameter Buildings.Fluid.HeatExchangers.DXCoils.AirSource.Data.Generic.CoolingCoil datCoi(
     nSta=1) "Coil data"
     annotation (Placement(transformation(extent={{2,100},{22,120}})));
 
@@ -35,7 +35,7 @@ model WindowAC
     "Supply fan"
     annotation (Placement(transformation(extent={{-8,-10},{12,10}})));
 
-  Buildings.Fluid.HeatExchangers.DXCoils.AirCooled.SingleSpeed sinSpeDX(
+  Buildings.Fluid.HeatExchangers.DXCoils.AirSource.SingleSpeedCooling sinSpeDXCoo(
     redeclare final package Medium = MediumA,
     show_T=true,
     dp_nominal=dpDX_nominal,
@@ -75,9 +75,9 @@ equation
           {-40,0},{-8,0}}, color={0,127,255}));
   connect(gaiFanNor.y, yFan_actual)
     annotation (Line(points={{321,110},{370,110}}, color={0,0,127}));
-  connect(fan.port_b, sinSpeDX.port_a) annotation (Line(points={{12,0},{90,0}},
+  connect(fan.port_b, sinSpeDXCoo.port_a) annotation (Line(points={{12,0},{90,0}},
                          color={0,127,255}));
-  connect(sinSpeDX.port_b, TAirLvg.port_a) annotation (Line(
+  connect(sinSpeDXCoo.port_b, TAirLvg.port_a) annotation (Line(
         points={{110,0},{176,0},{176,0},{240,0}},     color={0,127,
           255}));
   connect(weaBus.TDryBul, TOut.u) annotation (Line(
@@ -88,9 +88,9 @@ equation
       index=-1,
       extent={{-3,-6},{-3,-6}},
       horizontalAlignment=TextAlignment.Right));
-  connect(TOut.y, sinSpeDX.TConIn) annotation (Line(points={{-239,-40},{60,-40},
+  connect(TOut.y, sinSpeDXCoo.TOut) annotation (Line(points={{-239,-40},{60,-40},
           {60,3},{89,3}},             color={0,0,127}));
-  connect(uCooEna, sinSpeDX.on) annotation (Line(points={{-380,-120},{-80,-120},
+  connect(uCooEna, sinSpeDXCoo.on) annotation (Line(points={{-380,-120},{-80,-120},
           {-80,-60},{40,-60},{40,8},{89,8}}, color={255,0,255}));
   annotation (defaultComponentName = "winAC",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,

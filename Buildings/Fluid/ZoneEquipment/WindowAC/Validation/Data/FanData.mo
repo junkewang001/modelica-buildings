@@ -2,8 +2,7 @@ within Buildings.Fluid.ZoneEquipment.WindowAC.Validation.Data;
 record FanData "Fan data for the validation model"
   extends Buildings.Fluid.Movers.Data.Generic(
     speed_rpm_nominal=2900,
-    use_powerCharacteristic=true,
-    power(V_flow={0,0.043157,0.086314,0.129471,0.172628,0.215785,
+    power(V_flow={0.000001,0.043157,0.086314,0.129471,0.172628,0.215785,
      0.258942,0.302099,0.345256,0.388413,0.43157}, P={0,3.314,4.313,5.403,6.775,
           8.619,11.125,14.484,18.886,24.521,31.581}),
     pressure(V_flow={0.043157,0.086314,0.129471,0.172628,0.215785,
