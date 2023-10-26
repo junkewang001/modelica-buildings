@@ -193,8 +193,6 @@ model Guideline36_RTU
   Buildings.Controls.OBC.RooftopUnits.Controller RTUCon(
     final nCoiHea=nCoiHea,
     final nCoiCoo=nCoiCoo,
-    final uThrCoi1=0.4,
-    final minComSpe=0.25,
     final dUHys=0.2)
     "Controller for rooftop units"
     annotation (Placement(transformation(extent={{980,520},{1000,548}})));

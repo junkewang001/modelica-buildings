@@ -102,8 +102,6 @@ model ASHRAE2006_RTU
   Buildings.Controls.OBC.RooftopUnits.Controller RTUCon(
     final nCoiHea=nCoiHea,
     final nCoiCoo=nCoiCoo,
-    final uThrCoi1=0.4,
-    final minComSpe=0.25,
     final dUHys=0.2)
     "Controller for rooftop units"
     annotation (Placement(transformation(extent={{1010,232},{1030,260}})));
