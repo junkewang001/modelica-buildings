@@ -792,9 +792,9 @@ equation
           -305.455},{740,-305.455},{740,-140},{768,-140}},
                                                  color={255,0,255}));
   connect(conVAVG36.yZonTemResReq, temResReq1.u[1:5]) annotation (Line(points={{834,32},
-          {840,32},{840,14.8},{850,14.8}},        color={255,127,0}));
+          {840,32},{840,6.4},{850,6.4}},          color={255,127,0}));
   connect(conVAVG36.yZonPreResReq, preRetReq.u[1:5]) annotation (Line(points={{834,30},
-          {842,30},{842,44.8},{850,44.8}},         color={255,127,0}));
+          {842,30},{842,36.4},{850,36.4}},         color={255,127,0}));
   connect(temResReq1.y, conTSupSetG36.uZonTemResReq) annotation (Line(points={{874,12},
           {884,12},{884,-274},{-210,-274},{-210,-177},{-202,-177}},
                   color={255,127,0}));
@@ -857,21 +857,23 @@ equation
   connect(conVAVG36.yDam, yDam_pasThr.u) annotation (Line(points={{834,51},{834,
           52},{904,52},{904,60},{912,60}}, color={0,0,127}));
   connect(modeSelector.yFan, mulOr2.u[1]) annotation (Line(points={{-179.091,
-          -305.455},{-179.091,-306},{-160,-306},{-160,-350.625},{-142,-350.625}},
+          -305.455},{-179.091,-306},{-160,-306},{-160,-342.75},{-142,-342.75}},
         color={255,0,255}));
   connect(mulOr.y, mulOr2.u[2]) annotation (Line(points={{124,-100},{120,-100},
-          {120,-366},{-142,-366},{-142,-348.875}}, color={255,0,255}));
+          {120,-366},{-142,-366},{-142,-346.25}},  color={255,0,255}));
   connect(mulOr1.y, mulOr2.u[3]) annotation (Line(points={{302,-90},{306,-90},{
           306,-116},{248,-116},{248,-208},{120,-208},{120,-366},{-142,-366},{
-          -142,-347.125}}, color={255,0,255}));
+          -142,-349.75}},  color={255,0,255}));
   connect(mulOr2.y, booToRea4.u) annotation (Line(points={{-118,-348},{66,-348},
           {66,44},{98,44}}, color={255,0,255}));
   connect(AuxHeaCoi.Q_flow, hys3.u)
     annotation (Line(points={{501,-34},{501,-90},{518,-90}}, color={0,0,127}));
   connect(hys3.y, mulOr2.u[4]) annotation (Line(points={{542,-90},{546,-90},{
-          546,-366},{-142,-366},{-142,-345.375}}, color={255,0,255}));
+          546,-366},{-142,-366},{-142,-353.25}},  color={255,0,255}));
   connect(conTSupSetG36.TAirSupSet, TSupSet_pasThr.u) annotation (Line(points={
           {-178,-180},{-168,-180},{-168,-236},{-148,-236}}, color={0,0,127}));
+  connect(TMix.T, conTSup.Tmix) annotation (Line(points={{40,-29},{40,-20},{26,
+          -20},{26,-60},{-90,-60},{-90,-211},{-62,-211}}, color={0,0,127}));
   annotation (
   defaultComponentName="hvac",
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-400},{1420,

@@ -105,7 +105,7 @@ block SupplyAirTemperature
   Buildings.Controls.OBC.CDL.Continuous.PIDWithReset con1(
     final controllerType=controllerType,
     final k=0.05,
-    final Ti=5000,
+    final Ti=1000,
     final Td=Td,
     final yMax=1,
     final yMin=if have_heating then -1 else 0,
@@ -121,6 +121,8 @@ block SupplyAirTemperature
   Buildings.Controls.OBC.CDL.Continuous.Sources.Constant zero1(k=273.15 + 12)
                                                                    "Zero"
     annotation (Placement(transformation(extent={{-134,54},{-114,74}})));
+  Buildings.Controls.OBC.CDL.Logical.Change cha
+    annotation (Placement(transformation(extent={{-134,-82},{-114,-62}})));
 equation
   connect(TSup, con.u_s) annotation (Line(points={{-160,0},{-112,0}},
                color={0,0,127}));
@@ -180,16 +182,18 @@ equation
                                                   color={0,0,127}));
   connect(limInfCoo.y, mapCoo.x1) annotation (Line(points={{-28,-80},{-4,-80},{
           -4,-72},{8,-72}}, color={0,0,127}));
-  connect(uEna, con.trigger) annotation (Line(points={{-160,-100},{-106,-100},{-106,
-          -12}}, color={255,0,255}));
   connect(con1.y, mapOA.u)
     annotation (Line(points={{-58,24},{2,24},{2,0},{8,0}}, color={0,0,127}));
-  connect(con1.trigger, uEna) annotation (Line(points={{-76,12},{-76,-46},{-106,
-          -46},{-106,-100},{-160,-100}}, color={255,0,255}));
   connect(Tmix, con1.u_s) annotation (Line(points={{-160,40},{-88,40},{-88,24},
           {-82,24}}, color={0,0,127}));
   connect(zero1.y, con1.u_m) annotation (Line(points={{-112,64},{-104,64},{-104,
           14},{-84,14},{-84,6},{-70,6},{-70,12}}, color={0,0,127}));
+  connect(uEna, cha.u) annotation (Line(points={{-160,-100},{-148,-100},{-148,
+          -72},{-136,-72}}, color={255,0,255}));
+  connect(cha.y, con.trigger) annotation (Line(points={{-112,-72},{-106,-72},{
+          -106,-12}}, color={255,0,255}));
+  connect(cha.y, con1.trigger) annotation (Line(points={{-112,-72},{-106,-72},{
+          -106,-26},{-76,-26},{-76,12}}, color={255,0,255}));
   annotation (
   defaultComponentName="conTSup",
   Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
