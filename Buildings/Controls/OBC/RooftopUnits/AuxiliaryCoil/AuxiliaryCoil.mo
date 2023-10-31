@@ -116,10 +116,6 @@ protected
     "Convert Boolean auxiliary heating enable signal to real value"
     annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
 
-  Buildings.Controls.OBC.CDL.Logical.And andLocOut
-    "Check for heating coil signal and outdoor air temperature lockout"
-    annotation (Placement(transformation(extent={{-46,-10},{-26,10}})));
-
   Buildings.Controls.OBC.CDL.Continuous.Max maxSupHea
     "Output higher of the two auxiliary heating signals"
     annotation (Placement(transformation(extent={{70,-30},{90,-10}})));
@@ -156,8 +152,6 @@ equation
     annotation (Line(points={{-82,0},{-120,0}}, color={0,0,127}));
   connect(uHeaCoi, greThrHeaCoi.u)
     annotation (Line(points={{-120,-40},{-82,-40}}, color={0,0,127}));
-  connect(lesThrLocOut.y, andLocOut.u1)
-    annotation (Line(points={{-58,0},{-48,0}}, color={255,0,255}));
   connect(conPHeaHig.y, mulSupHeaEng.u1)
     annotation (Line(points={{11,-80},{28,-80}}, color={0,0,127}));
   connect(mulSupHeaEng.y, maxSupHea.u2)
@@ -176,10 +170,6 @@ equation
     annotation (Line(points={{12,0},{ 20,0},{20,48},{28,48}}, color={0,0,127}));
   connect(greThrHeaCoi.y, booToReaSupHeaHig.u)
     annotation (Line(points={{-58,-40},{-12,-40}}, color={255,0,255}));
-  connect(andLocOut.y, booToReaSupHeaLocOut.u)
-    annotation (Line(points={{-24,0},{-12,0}}, color={255,0,255}));
-  connect(greThrHeaCoi.y, andLocOut.u2)
-    annotation (Line(points={{-58,-40},{-52,-40},{-52,-8},{-48,-8}}, color={255,0,255}));
   connect(mulSupHeaEng1.y, maxSupHea.u1)
     annotation (Line(points={{52,54},{60,54},{60,-14},{68,-14}}, color={0,0,127}));
   connect(conHeaCoiSigZer.y, conPHeaLocOut.u_s)
@@ -197,6 +187,8 @@ equation
           60}}, color={255,0,255}));
   connect(uDXCoi, and2.u2)
     annotation (Line(points={{-120,80},{58,80}}, color={255,0,255}));
+  connect(lesThrLocOut.y, booToReaSupHeaLocOut.u)
+    annotation (Line(points={{-58,0},{-12,0}}, color={255,0,255}));
   annotation (defaultComponentName="conAuxCoi",
     Icon(coordinateSystem(preserveAspectRatio=false),
       graphics={

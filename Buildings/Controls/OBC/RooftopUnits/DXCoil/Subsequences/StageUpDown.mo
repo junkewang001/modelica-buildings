@@ -62,7 +62,7 @@ block StageUpDown
       iconTransformation(extent={{100,-80},{140,-40}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uComSpe[nCoi](
-    displayUnit="1") "Compressor speed ratio"
+    each displayUnit="1") "Compressor speed ratio"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
       iconTransformation(extent={{-140,-80},{-100,-40}})));
 

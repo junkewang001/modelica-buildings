@@ -286,17 +286,17 @@ block Controller
       iconTransformation(extent={{-140,-270},{-100,-230}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TSupCoiHea[nCoiHea](
-    final unit="K",
-    displayUnit="degC",
-    final quantity="ThermodynamicTemperature")
+    final unit=fill("K",nCoiHea),
+    displayUnit=fill("degC",nCoiHea),
+    final quantity=fill("ThermodynamicTemperature",nCoiHea))
     "Heating coil supply air temperature"
     annotation (Placement(transformation(extent={{-140,-280},{-100,-240}}),
       iconTransformation(extent={{-140,-210},{-100,-170}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput TSupCoiCoo[nCoiCoo](
-    final unit="K",
-    displayUnit="degC",
-    final quantity="ThermodynamicTemperature")
+    final unit=fill("K",nCoiCoo),
+    displayUnit=fill("degC",nCoiCoo),
+    final quantity=fill("ThermodynamicTemperature",nCoiCoo))
     "Cooling coil supply air temperature"
     annotation (Placement(transformation(extent={{-140,-240},{-100,-200}}),
       iconTransformation(extent={{-140,-240},{-100,-200}})));
@@ -341,6 +341,8 @@ block Controller
     annotation (Placement(transformation(extent={{100,-180},{140,-140}}),
       iconTransformation(extent={{100,-240},{140,-200}})));
 
+  CDL.Continuous.Sources.Constant con[nCoiCoo](k=fill(1, nCoiCoo))
+    annotation (Placement(transformation(extent={{60,40},{80,60}})));
 protected
   Buildings.Controls.OBC.RooftopUnits.DXCoil.Controller DXCoiConCoo(
     final nCoi=nCoiCoo,
@@ -498,8 +500,6 @@ equation
   connect(defTimFra.TOut, TOut)
     annotation (Line(points={{-71,-136},{-80,-136},{-80,-100},{-120,-100}}, color={0,0,127}));
   end if;
-  connect(ComSpeDRCoo.yComSpe, yComSpeCoo)
-    annotation (Line(points={{82,74},{90,74},{90,40},{120,40}}, color={0,0,127}));
   connect(conAuxCoi.yAuxHea, yAuxHea)
     annotation (Line(points={{-8,-56},{80,-56},{80,-80},{120,-80}},   color={0,0,127}));
   connect(yAuxHea, yAuxHea)
@@ -585,6 +585,8 @@ equation
           -200},{46,68},{58,68}}, color={0,0,127}));
   connect(conPHea.y, mul.u1) annotation (Line(points={{11,-240},{50,-240},{50,26},
           {58,26}}, color={0,0,127}));
+  connect(ComSpeDRCoo.yComSpe, yComSpeCoo) annotation (Line(points={{82,74},{90,
+          74},{90,40},{120,40}}, color={0,0,127}));
   annotation (defaultComponentName="RTUCon",
     Icon(coordinateSystem(preserveAspectRatio=false,
       extent={{-100,-280},{100,200}}),

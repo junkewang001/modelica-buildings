@@ -294,6 +294,10 @@ equation
           608,46},{716,46}},  color={0,0,127}));
   connect(VAVBox.VSup_flow, conVAV.VDis_flow) annotation (Line(points={{762,56},
           {780,56},{780,90},{570,90},{570,42},{578,42}}, color={0,0,127}));
+  connect(TMix.T, conTSup.Tmix) annotation (Line(points={{40,-29},{40,-20},{26,
+          -20},{26,-60},{-72,-60},{-72,-211},{-62,-211}}, color={0,0,127}));
+  connect(TOut.y, conTSup.TOut) annotation (Line(points={{-279,180},{-240,180},
+          {-240,-186},{-100,-186},{-100,-208},{-62,-208}}, color={0,0,127}));
   annotation (
   defaultComponentName="hvac",
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-400},{1420,

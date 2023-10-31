@@ -93,7 +93,7 @@ block Controller
       iconTransformation(extent={{-140,-60},{-100,-20}})));
 
   Buildings.Controls.OBC.CDL.Interfaces.RealInput uComSpe[nCoi](
-    displayUnit="1")
+    each displayUnit="1")
     "Compressor speed ratio"
     annotation (Placement(transformation(extent={{-260,-120},{-220,-80}}),
       iconTransformation(extent={{-140,-100},{-100,-60}})));

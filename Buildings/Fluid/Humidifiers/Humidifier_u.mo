@@ -23,6 +23,10 @@ model Humidifier_u
     "Heat port for total heat exchange with the control volume"
     annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
 
+  Controls.OBC.CDL.Continuous.GreaterThreshold greThr
+    annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
+  Controls.OBC.CDL.Conversions.BooleanToReal booToRea
+    annotation (Placement(transformation(extent={{-22,20},{-2,40}})));
 protected
   Modelica.Blocks.Math.Gain gai(final k=mWat_flow_nominal) "Gain"
     annotation (Placement(transformation(extent={{-80,50},{-60,70}})));
@@ -39,6 +43,12 @@ equation
 
   connect(gai.y, mWat_flow)
     annotation (Line(points={{-59,60},{110,60},{110,60}}, color={0,0,127}));
+  connect(u, greThr.u) annotation (Line(points={{-120,60},{-102,60},{-102,30},{
+          -82,30}}, color={0,0,127}));
+  connect(greThr.y, booToRea.u)
+    annotation (Line(points={{-58,30},{-24,30}}, color={255,0,255}));
+  connect(booToRea.y, damPreInd.y) annotation (Line(points={{0,30},{14,30},{14,
+          18},{-78,18},{-78,12}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics={
         Text(

@@ -39,7 +39,7 @@ model ASHRAE2006_RTU_wSupTemRes
     "Number of DX heating coils";
   parameter Integer nCoiCoo(min=1) = 6
     "Number of DX cooling coils";
-  parameter Real f_num = 0.8
+  parameter Real f_num = 1.5
     "Factor to modify cooling capacity of each DX stage ";
   parameter Fluid.DXSystems.Heating.AirSource.Data.Generic.DXCoil datHeaCoi(
     nSta=1,
@@ -294,8 +294,8 @@ This is for
           "modelica://Buildings/Resources/Scripts/Dymola/Examples/VAVReheat/ASHRAE2006_RTU.mos"
         "Simulate and plot"),
     experiment(
-      StartTime=0,
-      StopTime=604800,
+      StartTime=15638400,
+      StopTime=16243200,
       Interval=600,
       Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"),
