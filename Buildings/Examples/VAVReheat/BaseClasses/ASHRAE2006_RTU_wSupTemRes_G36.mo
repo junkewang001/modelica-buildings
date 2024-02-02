@@ -874,6 +874,8 @@ equation
           {-178,-180},{-168,-180},{-168,-236},{-148,-236}}, color={0,0,127}));
   connect(TMix.T, conTSup.Tmix) annotation (Line(points={{40,-29},{40,-20},{26,
           -20},{26,-60},{-90,-60},{-90,-211},{-62,-211}}, color={0,0,127}));
+  connect(TOut.y, conTSup.TOut) annotation (Line(points={{-279,180},{-240,180},
+          {-240,-208},{-62,-208}}, color={0,0,127}));
   annotation (
   defaultComponentName="hvac",
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-380,-400},{1420,
