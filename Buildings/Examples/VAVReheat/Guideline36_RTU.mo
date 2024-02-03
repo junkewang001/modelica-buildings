@@ -19,7 +19,9 @@ model Guideline36_RTU
       nor(T_start=297.15),
       cor(T_start=297.15),
       eas(T_start=297.15),
-      sou(T_start=297.15)));
+      sou(T_start=297.15)),
+    weaDat(filNam=Modelica.Utilities.Files.loadResource(
+          "modelica://Buildings/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")));
 
   parameter Real ACHCor(final unit="1/h")=6
     "Design air change per hour core";
