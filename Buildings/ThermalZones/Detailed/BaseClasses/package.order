@@ -9,6 +9,7 @@ HeatGain
 InfraredRadiationExchange
 InfraredRadiationGainDistribution
 MixedAirHeatMassBalance
+MixedAirHeatMassBalance_virus
 PartialAirHeatMassBalance
 PartialSurfaceInterface
 PartialSurfaceInterfaceRadiative

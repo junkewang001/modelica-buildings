@@ -118,6 +118,8 @@ block RoomVAV "Controller for room VAV box"
   Buildings.Controls.OBC.CDL.Continuous.GreaterThreshold greThr(t=dTHys)
     "Test for overlap of heating and cooling set points "
     annotation (Placement(transformation(extent={{-10,-130},{10,-110}})));
+  Modelica.Blocks.Interfaces.BooleanInput uFan
+    annotation (Placement(transformation(extent={{-140,10},{-100,50}})));
 protected
   parameter Real yMax=1 "Upper limit of PID control output";
   parameter Real yMin=0 "Lower limit of PID control output";

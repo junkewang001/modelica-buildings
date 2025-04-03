@@ -16,9 +16,9 @@ model PAC "In-room portable air cleaner"
   parameter Real kpow(min=0) = 50
     "Rated power";
 
-  Modelica.Blocks.Interfaces.RealInput C[Medium.nC] "Zone concentration"
+  Modelica.Blocks.Interfaces.RealInput C "Zone concentration"
     annotation (Placement(transformation(extent={{-140,20},{-100,60}})));
-  Modelica.Blocks.Interfaces.RealOutput yC_flow[Medium.nC] "Concentration outflow"
+  Modelica.Blocks.Interfaces.RealOutput yC_flow "Concentration outflow"
     annotation (Placement(transformation(extent={{100,30},{120,50}})));
   Modelica.Blocks.Interfaces.BooleanInput u "on/off"
     annotation (Placement(transformation(extent={{-140,-40},{-100,0}})));
@@ -56,9 +56,9 @@ equation
   connect(E_PAC.y,yE_PAC)
     annotation (Line(points={{81,-40},{110,-40}}, color={0,0,127}));
 
-  for i in 1:Medium.nC loop
-    yC_flow[i]  = booleanToReal.y*(-flowPAC)*eff[i]*nPACs*C[i];
-  end for;
+  //for i in 1:Medium.nC loop
+   yC_flow = booleanToReal.y*(-flowPAC)*eff[2]*nPACs*C;
+  //end for;
   annotation (Icon(graphics={
         Ellipse(
           extent={{-30,68},{32,50}},

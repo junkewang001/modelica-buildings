@@ -1,9 +1,13 @@
 ASHRAE2006
+ASHRAE2006_filt
 Floor
+Floor_virus
 Guideline36
 HVACBuilding
 PartialFloor
+PartialFloor_virus
 PartialHVAC
+PartialHVAC_filt
 RoomLeakage
 VAVReheatBox
 Controls

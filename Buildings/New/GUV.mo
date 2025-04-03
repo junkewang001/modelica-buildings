@@ -4,24 +4,28 @@ model GUV "In-room GUV"
   replaceable package Medium =
     Modelica.Media.Interfaces.PartialMedium "Medium in the component";
 
-  parameter Real frad(min=0, max=1) = 0.2
+  parameter Real frad(
+    max=1,
+    min=0)=0.2
     "Fraction of irradiated space";
 
-  parameter Real Eavg(min=0, max=1) = 50e-6
+  parameter Real Eavg(
+    max=1,
+    min=0)=50e-6
     "Effluence rate";
 
-  parameter Real krad[Medium.nC](min=0) = 2.93e3
-    "Inactivation constant";
+  parameter Real krad[Medium.nC](min=0)={0,0}
+    "Inactivation constant";            //= 2.93e3
 
-  parameter Real kpow(min=0) = 120
+  parameter Real kpow(min=0)=120
     "Rated power";
 
-  parameter Real V(min=0) = 120
+  parameter Real V(min=0)=120
     "Zone volume";
 
-  Modelica.Blocks.Interfaces.RealInput C[Medium.nC] "Zone concentration"
+  Modelica.Blocks.Interfaces.RealInput C "Zone concentration"
     annotation (Placement(transformation(extent={{-140,20},{-100,60}})));
-  Modelica.Blocks.Interfaces.RealOutput yC_flow[Medium.nC]
+  Modelica.Blocks.Interfaces.RealOutput yC_flow
     "Concentration outflow"
     annotation (Placement(transformation(extent={{100,30},{120,50}})));
   Modelica.Blocks.Interfaces.BooleanInput u "on/off"
@@ -47,9 +51,9 @@ protected
 
 equation
 
-  for i in 1:Medium.nC loop
-    yC_flow[i]  = booleanToReal.y*1.2*(-frad)*Eavg*krad[i]*V*C[i];
-  end for;
+  //for i in 1:Medium.nC loop
+  yC_flow = booleanToReal.y*1.2*(-frad)*Eavg*krad[2]*V*C;
+  //end for;
 
   connect(u, booleanToReal.u)
     annotation (Line(points={{-120,-20},{-82,-20}}, color={255,0,255}));

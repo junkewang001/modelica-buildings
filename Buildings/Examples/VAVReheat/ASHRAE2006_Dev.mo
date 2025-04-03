@@ -11,7 +11,7 @@ model ASHRAE2006_Dev
     mWes_flow_nominal=ACHWes*VRooWes*conv,
     MediumA(extraPropertiesNames={"CO2", "COVID"}),
     redeclare Buildings.Examples.VAVReheat.BaseClasses.ASHRAE2006_filt hvac(TCooOff=
-          297.15),
+          297.15, kGUV={1,1}),
     redeclare replaceable Buildings.Examples.VAVReheat.BaseClasses.Floor_virus flo(
       sampleModel=true));
 

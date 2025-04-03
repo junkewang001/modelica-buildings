@@ -1,5 +1,8 @@
 CheckValve
+HVACFilter
 HydraulicDiameter
+InDuctGUV
+InDuctGUVCalc
 Junction
 LosslessPipe
 Pipe
