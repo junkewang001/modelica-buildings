@@ -87,12 +87,12 @@ partial model PartialHVAC_filt
     "Building static pressure";
   parameter Real yFanMin = 0.1 "Minimum fan speed";
 
-  parameter Modelica.Units.SI.Temperature TCooAirMix_nominal(displayUnit="degC")
-    =303.15
+  parameter Modelica.Units.SI.Temperature TCooAirMix_nominal(displayUnit="degC")=
+     303.15
     "Mixed air temperature during cooling nominal conditions (used to size cooling coil)"
     annotation (Dialog(group="Air handler unit nominal temperatures and humidity"));
-  parameter Modelica.Units.SI.Temperature TCooAirSup_nominal(displayUnit="degC")
-    =285.15
+  parameter Modelica.Units.SI.Temperature TCooAirSup_nominal(displayUnit="degC")=
+     285.15
     "Supply air temperature during cooling nominal conditions (used to size cooling coil)"
     annotation (Dialog(group="Air handler unit nominal temperatures and humidity"));
   parameter Modelica.Units.SI.MassFraction wCooAirMix_nominal = 0.017
@@ -103,12 +103,12 @@ partial model PartialHVAC_filt
     "Cooling coil nominal inlet water temperature"
     annotation (Dialog(group="Air handler unit nominal temperatures and humidity"));
 
-  parameter Modelica.Units.SI.Temperature THeaAirMix_nominal(displayUnit="degC")
-    =277.15
+  parameter Modelica.Units.SI.Temperature THeaAirMix_nominal(displayUnit="degC")=
+     277.15
     "Mixed air temperature during heating nominal conditions (used to size heating coil)"
     annotation (Dialog(group="Air handler unit nominal temperatures and humidity"));
-  parameter Modelica.Units.SI.Temperature THeaAirSup_nominal(displayUnit="degC")
-    =285.15
+  parameter Modelica.Units.SI.Temperature THeaAirSup_nominal(displayUnit="degC")=
+     285.15
     "Supply air temperature during heating nominal conditions (used to size heating coil)"
     annotation (Dialog(group="Air handler unit nominal temperatures and humidity"));
   parameter Modelica.Units.SI.Temperature THeaWatInl_nominal(displayUnit="degC")
@@ -118,6 +118,12 @@ partial model PartialHVAC_filt
   parameter Boolean allowFlowReversal=true
     "= false to simplify equations, assuming, but not enforcing, no flow reversal"
     annotation (Evaluate=true);
+
+  parameter Real dp_nominal_filter = 172 "In-duct filter pressure drop";
+
+  parameter Real dp_nominal_guv = 10 "In-duct GUV pressure drop";
+
+  parameter Real eff = 0.8 "In-duct filter efficiency";
 
   Modelica.Fluid.Interfaces.FluidPort_a port_supAir[numZon](redeclare package
       Medium = MediumA)
@@ -447,8 +453,9 @@ partial model PartialHVAC_filt
     annotation (Placement(transformation(extent={{250,-50},{270,-30}})));
 
   Fluid.FixedResistances.HVACFilter filt(m_flow_nominal=mAir_flow_nominal,
-      dp_nominal=172, redeclare package Medium =
-               MediumA)
+      dp_nominal=dp_nominal_filter, redeclare package Medium =
+               MediumA,
+    eff=eff)
     annotation (Placement(transformation(extent={{40,-50},{60,-30}})));
   Modelica.Blocks.Interfaces.BooleanOutput y_on_off
     "signal if the system is on or off" annotation (Placement(transformation(
@@ -456,9 +463,10 @@ partial model PartialHVAC_filt
             {460,-104}})));
   Fluid.FixedResistances.InDuctGUV inDucGUV(
     m_flow_nominal=mAir_flow_nominal,
-      dp_nominal=10, redeclare package Medium =
+      dp_nominal=dp_nominal_guv, redeclare package Medium =
                MediumA,
-    kGUV=kGUV)
+    kGUV=kGUV,
+    kpow=kpow)
     annotation (Placement(transformation(extent={{68,-50},{88,-30}})));
   Fluid.Sensors.RelativeHumidityTwoPort senRelHumRet(redeclare package Medium = MediumA, m_flow_nominal=
         mAir_flow_nominal)
@@ -467,6 +475,7 @@ partial model PartialHVAC_filt
         mAir_flow_nominal, redeclare package Medium=MediumA)
     annotation (Placement(transformation(extent={{364,-50},{384,-30}})));
   parameter Real kGUV[MediumA.nC]={1, 1} "Inactivation constant";
+  parameter Real kpow "GUV power";
 protected
   constant Modelica.Units.SI.SpecificHeatCapacity cpAir=Buildings.Utilities.Psychrometrics.Constants.cpAir
     "Air specific heat capacity";

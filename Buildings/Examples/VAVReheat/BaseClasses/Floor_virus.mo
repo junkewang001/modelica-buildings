@@ -101,6 +101,36 @@ model Floor_virus "Model of a floor of the building"
   parameter Real kdec(min=0)=0.76
     "Decay rate of virus";
 
+   parameter Real frad(
+    max=1,
+    min=0)=0.2
+    "Fraction of irradiated space";
+
+  parameter Real Eavg(
+    max=1,
+    min=0)=50e-6
+    "Effluence rate";
+
+  parameter Real krad[Medium.nC](min=0)={0,0}
+    "Inactivation constant";
+
+  parameter Real kpow_GUV(min=0)=120
+    "Rated power";
+
+  parameter Real eff_guv[Medium.nC](
+    max=1,
+    min=0)={0,0.9997}
+    "Virus removal efficiency";
+
+  parameter Integer nPACs(min=0)=1
+    "Number of PACs";
+
+  parameter Real flowPAC(min=0)=0.094
+    "PAC flow rate";
+
+  parameter Real kpow_PAC(min=0)=50
+    "Rated power";
+
   Buildings.ThermalZones.Detailed.MixedAir_virus sou(
     redeclare package Medium = Medium,
     AFlo=AFloSou,
@@ -129,14 +159,14 @@ model Floor_virus "Model of a floor of the building"
     nSurBou=0,
     use_C_flow=true,
     kdec=kdec,
-    frad=0,
-    Eavg=0,
-    krad={0,0},
-    kpow_GUV=0,
-    eff={0,0.9997},
-    nPACs=0,
-    flowPAC=0,
-    kpow_PAC=0,
+    frad=frad,
+    Eavg=Eavg,
+    krad={krad[1],krad[2]},
+    kpow_GUV=kpow_GUV,
+    eff={eff_guv[1],eff_guv[2]},
+    nPACs=nPACs,
+    flowPAC=flowPAC,
+    kpow_PAC=kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -175,14 +205,14 @@ model Floor_virus "Model of a floor of the building"
       til={Buildings.Types.Tilt.Wall, Buildings.Types.Tilt.Wall}),
     use_C_flow=true,
     kdec=kdec,
-    frad=0,
-    Eavg=0,
-    krad={0,0},
-    kpow_GUV=0,
-    eff={0,0.9997},
-    nPACs=0,
-    flowPAC=0,
-    kpow_PAC=0,
+    frad=frad,
+    Eavg=Eavg,
+    krad={krad[1],krad[2]},
+    kpow_GUV=kpow_GUV,
+    eff={eff_guv[1],eff_guv[2]},
+    nPACs=nPACs,
+    flowPAC=flowPAC,
+    kpow_PAC=kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -216,14 +246,14 @@ model Floor_virus "Model of a floor of the building"
     nSurBou=0,
     use_C_flow=true,
     kdec=kdec,
-    frad=0,
-    Eavg=0,
-    krad={0,0},
-    kpow_GUV=0,
-    eff={0,0.9997},
-    nPACs=0,
-    flowPAC=0,
-    kpow_PAC=0,
+    frad=frad,
+    Eavg=Eavg,
+    krad={krad[1],krad[2]},
+    kpow_GUV=kpow_GUV,
+    eff={eff_guv[1],eff_guv[2]},
+    nPACs=nPACs,
+    flowPAC=flowPAC,
+    kpow_PAC=kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -262,14 +292,14 @@ model Floor_virus "Model of a floor of the building"
       til={Buildings.Types.Tilt.Wall, Buildings.Types.Tilt.Wall}),
     use_C_flow=true,
     kdec=kdec,
-    frad=0,
-    Eavg=0,
-    krad={0,0},
-    kpow_GUV=0,
-    eff={0,0.9997},
-    nPACs=0,
-    flowPAC=0,
-    kpow_PAC=0,
+    frad=frad,
+    Eavg=Eavg,
+    krad={krad[1],krad[2]},
+    kpow_GUV=kpow_GUV,
+    eff={eff_guv[1],eff_guv[2]},
+    nPACs=nPACs,
+    flowPAC=flowPAC,
+    kpow_PAC=kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -295,14 +325,14 @@ model Floor_virus "Model of a floor of the building"
       til={Buildings.Types.Tilt.Wall, Buildings.Types.Tilt.Wall, Buildings.Types.Tilt.Wall, Buildings.Types.Tilt.Wall}),
     use_C_flow=true,
     kdec=kdec,
-    frad=0,
-    Eavg=0,
-    krad={0,0},
-    kpow_GUV=0,
-    eff={0,0.9997},
-    nPACs=0,
-    flowPAC=0,
-    kpow_PAC=0,
+    frad=frad,
+    Eavg=Eavg,
+    krad={krad[1],krad[2]},
+    kpow_GUV=kpow_GUV,
+    eff={eff_guv[1],eff_guv[2]},
+    nPACs=nPACs,
+    flowPAC=flowPAC,
+    kpow_PAC=kpow_PAC,
     nPorts=11,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,

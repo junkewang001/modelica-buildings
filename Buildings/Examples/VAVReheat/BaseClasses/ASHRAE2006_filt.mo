@@ -6,17 +6,22 @@ model ASHRAE2006_filt
     mHeaVAV_flow_nominal=0.3*mCooVAV_flow_nominal,
     amb(nPorts=3),
     filt(allowFlowReversal=true,
-      dp_nominal=172,
-      eff=0),
+      dp_nominal=dp_nominal_filter,
+      eff=eff),
     fanSup(per(pressure(dp=2*{780 + 10 + 200 + dpBuiStaSet,0}))),
     inDucGUV(
-      dp_nominal=0,
-      kGUV={1,1},
-      kpow=0));
+      dp_nominal=dp_nominal_guv,
+      kGUV={kGUV[1],kGUV[2]},
+      kpow=kpow));
 
   parameter Real ratVMinVAV_flow[numZon](unit="1")={max(1.5*VZonOA_flow_nominal[
     i]/mCooVAV_flow_nominal[i]/1.2, 0.15) for i in 1:numZon}
     "Minimum discharge air flow rate ratio";
+  parameter Real kGUV[MediumA.nC]={1, 1} "Inactivation constant";
+  parameter Real kpow=10 "GUV power";
+  parameter Real dp_nominal_filter = 172 "In-duct filter pressure drop";
+  parameter Real dp_nominal_guv = 10 "In-duct GUV pressure drop";
+  parameter Real eff = 0.8 "In-duct filter efficiency";
 
   Controls.FanVFD conFanSup(
     xSet_nominal(displayUnit="Pa") = 410,

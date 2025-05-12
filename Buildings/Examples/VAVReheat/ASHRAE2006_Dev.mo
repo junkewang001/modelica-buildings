@@ -10,10 +10,24 @@ model ASHRAE2006_Dev
     mNor_flow_nominal=ACHNor*VRooNor*conv,
     mWes_flow_nominal=ACHWes*VRooWes*conv,
     MediumA(extraPropertiesNames={"CO2", "COVID"}),
-    redeclare Buildings.Examples.VAVReheat.BaseClasses.ASHRAE2006_filt hvac(TCooOff=
-          297.15, kGUV={1,1}),
+    redeclare Buildings.Examples.VAVReheat.BaseClasses.ASHRAE2006_filt hvac(
+      TCooOff=297.15,
+      dp_nominal_filter=172,
+      dp_nominal_guv=10,
+      eff=0.8,
+      kGUV={1,0.9},
+      kpow=10),
     redeclare replaceable Buildings.Examples.VAVReheat.BaseClasses.Floor_virus flo(
-      sampleModel=true));
+      sampleModel=true,
+      kdec=0.76,
+      frad=0.3,
+      Eavg=50e-6,
+      krad={0.5,0.5},
+      kpow_GUV=120,
+      eff_guv={0,0.9},
+      nPACs=1,
+      flowPAC=0.094,
+      kpow_PAC=50));
 
   parameter Real ACHCor(final unit="1/h")=6
     "Design air change per hour core";
