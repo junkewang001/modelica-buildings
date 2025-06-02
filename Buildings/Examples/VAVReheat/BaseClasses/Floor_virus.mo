@@ -117,7 +117,7 @@ model Floor_virus "Model of a floor of the building"
   parameter Real kpow_GUV(min=0)=120
     "Rated power";
 
-  parameter Real eff_guv[Medium.nC](
+  parameter Real eff_pac[Medium.nC](
     max=1,
     min=0)={0,0.9997}
     "Virus removal efficiency";
@@ -163,7 +163,7 @@ model Floor_virus "Model of a floor of the building"
     Eavg=Eavg,
     krad={krad[1],krad[2]},
     kpow_GUV=kpow_GUV,
-    eff={eff_guv[1],eff_guv[2]},
+    eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
     flowPAC=flowPAC,
     kpow_PAC=kpow_PAC,
@@ -209,7 +209,7 @@ model Floor_virus "Model of a floor of the building"
     Eavg=Eavg,
     krad={krad[1],krad[2]},
     kpow_GUV=kpow_GUV,
-    eff={eff_guv[1],eff_guv[2]},
+    eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
     flowPAC=flowPAC,
     kpow_PAC=kpow_PAC,
@@ -250,7 +250,7 @@ model Floor_virus "Model of a floor of the building"
     Eavg=Eavg,
     krad={krad[1],krad[2]},
     kpow_GUV=kpow_GUV,
-    eff={eff_guv[1],eff_guv[2]},
+    eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
     flowPAC=flowPAC,
     kpow_PAC=kpow_PAC,
@@ -296,7 +296,7 @@ model Floor_virus "Model of a floor of the building"
     Eavg=Eavg,
     krad={krad[1],krad[2]},
     kpow_GUV=kpow_GUV,
-    eff={eff_guv[1],eff_guv[2]},
+    eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
     flowPAC=flowPAC,
     kpow_PAC=kpow_PAC,
@@ -329,7 +329,7 @@ model Floor_virus "Model of a floor of the building"
     Eavg=Eavg,
     krad={krad[1],krad[2]},
     kpow_GUV=kpow_GUV,
-    eff={eff_guv[1],eff_guv[2]},
+    eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
     flowPAC=flowPAC,
     kpow_PAC=kpow_PAC,
