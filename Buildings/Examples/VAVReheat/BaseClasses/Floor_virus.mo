@@ -131,6 +131,9 @@ model Floor_virus "Model of a floor of the building"
   parameter Real kpow_PAC(min=0)=50
     "Rated power";
 
+  parameter Real k_quanta(min=0)=5
+    "Quanta emission rate, quanta/h";
+
   Buildings.ThermalZones.Detailed.MixedAir_virus sou(
     redeclare package Medium = Medium,
     AFlo=AFloSou,
@@ -208,11 +211,11 @@ model Floor_virus "Model of a floor of the building"
     frad=frad,
     Eavg=Eavg,
     krad={krad[1],krad[2]},
-    kpow_GUV=kpow_GUV,
+    kpow_GUV=AFloEas/AFloSou*kpow_GUV,
     eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
-    flowPAC=flowPAC,
-    kpow_PAC=kpow_PAC,
+    flowPAC=AFloEas/AFloSou*flowPAC,
+    kpow_PAC=AFloEas/AFloSou*kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -249,11 +252,11 @@ model Floor_virus "Model of a floor of the building"
     frad=frad,
     Eavg=Eavg,
     krad={krad[1],krad[2]},
-    kpow_GUV=kpow_GUV,
+    kpow_GUV=AFloNor/AFloSou*kpow_GUV,
     eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
-    flowPAC=flowPAC,
-    kpow_PAC=kpow_PAC,
+    flowPAC=AFloNor/AFloSou*flowPAC,
+    kpow_PAC=AFloNor/AFloSou*kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -295,11 +298,11 @@ model Floor_virus "Model of a floor of the building"
     frad=frad,
     Eavg=Eavg,
     krad={krad[1],krad[2]},
-    kpow_GUV=kpow_GUV,
+    kpow_GUV=AFloWes/AFloSou*kpow_GUV,
     eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
-    flowPAC=flowPAC,
-    kpow_PAC=kpow_PAC,
+    flowPAC=AFloWes/AFloSou*flowPAC,
+    kpow_PAC=AFloWes/AFloSou*kpow_PAC,
     nPorts=5,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -328,11 +331,11 @@ model Floor_virus "Model of a floor of the building"
     frad=frad,
     Eavg=Eavg,
     krad={krad[1],krad[2]},
-    kpow_GUV=kpow_GUV,
+    kpow_GUV=AFloCor/AFloSou*kpow_GUV,
     eff={eff_pac[1],eff_pac[2]},
     nPACs=nPACs,
-    flowPAC=flowPAC,
-    kpow_PAC=kpow_PAC,
+    flowPAC=AFloCor/AFloSou*flowPAC,
+    kpow_PAC=AFloCor/AFloSou*kpow_PAC,
     nPorts=11,
     intConMod=intConMod,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -370,7 +373,7 @@ model Floor_virus "Model of a floor of the building"
     extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)
     "Schedule of Sick People"
     annotation (Placement(transformation(extent={{-142,46},{-122,66}})));
-  Modelica.Blocks.Math.Gain gaiCov(k=5/3600)
+  Modelica.Blocks.Math.Gain gaiCov(k=k_quanta/3600)
     annotation (Placement(transformation(extent={{-100,46},{-80,66}})));
   Modelica.Blocks.Interfaces.BooleanInput u_on_off annotation (Placement(
         transformation(extent={{-104,-58},{-80,-34}}), iconTransformation(
