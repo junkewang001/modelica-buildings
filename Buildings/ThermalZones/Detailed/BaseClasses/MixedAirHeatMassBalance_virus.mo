@@ -146,7 +146,7 @@ model MixedAirHeatMassBalance_virus
     annotation (Placement(transformation(extent={{122,-230},{102,-210}})));
 
   // Latent and convective sensible heat gains
-  ViralDecay viralDecay(kdec=kdec, V=V)
+  New.ViralDecay viralDecay(kdec=kdec, V=V)
     annotation (Placement(transformation(extent={{-98,-48},{-78,-28}})));
   Modelica.Blocks.Math.Add add
     annotation (Placement(transformation(extent={{-52,-54},{-32,-34}})));
@@ -155,7 +155,7 @@ model MixedAirHeatMassBalance_virus
     annotation (Placement(transformation(extent={{-166,-44},{-146,-24}})));
   Modelica.Blocks.Interfaces.BooleanInput u_on_off
     annotation (Placement(transformation(extent={{-280,-60},{-240,-20}})));
-  GUV gUV(
+  New.GUV gUV(
     redeclare package Medium = Medium,
     frad=frad,
     Eavg=Eavg,
@@ -164,7 +164,7 @@ model MixedAirHeatMassBalance_virus
     V=V)  annotation (Placement(transformation(extent={{-100,14},{-80,34}})));
   Modelica.Blocks.Math.Add add1
     annotation (Placement(transformation(extent={{-14,-40},{6,-20}})));
-  PAC pAC(
+  New.PAC pAC(
     redeclare package Medium = Medium,
     eff=eff,
     nPACs=nPACs,
