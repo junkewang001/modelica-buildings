@@ -24,7 +24,7 @@ model ASHRAE2006_Dev
       Eavg=50e-6,
       krad={0.5,0.5},
       kpow_GUV=120,
-      eff_guv={0,0.9},
+      eff_pac={0,0.9},
       nPACs=1,
       flowPAC=0.094,
       kpow_PAC=50));

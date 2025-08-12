@@ -119,9 +119,11 @@ partial model PartialHVAC_filt
     "= false to simplify equations, assuming, but not enforcing, no flow reversal"
     annotation (Evaluate=true);
 
-  parameter Real dp_nominal_filter = 172 "In-duct filter pressure drop";
+  parameter Real dp_nominal_filter = 172 "In-duct filter pressure drop"
+    annotation(Evaluate = false);
 
-  parameter Real dp_nominal_guv = 10 "In-duct GUV pressure drop";
+  parameter Real dp_nominal_guv = 10 "In-duct GUV pressure drop"
+    annotation(Evaluate = false);
 
   parameter Real eff = 0.8 "In-duct filter efficiency";
 
