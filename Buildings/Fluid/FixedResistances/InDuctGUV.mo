@@ -1,7 +1,7 @@
 within Buildings.Fluid.FixedResistances;
 model InDuctGUV "In Duct GUV"
   extends Buildings.Fluid.BaseClasses.PartialInDuctGUV(
-    kGUV={1,1},
+    kGUV=kGUV,
     final m_flow_turbulent = if computeFlowResistance then deltaM * m_flow_nominal_pos else 0, vol(
         nPorts=2));
 
@@ -27,8 +27,7 @@ model InDuctGUV "In Duct GUV"
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=dp_nominal,
-    kGUV={1,1})
-               annotation (Placement(transformation(extent={{44,-10},{64,10}})));
+    kGUV=kGUV) annotation (Placement(transformation(extent={{44,-10},{64,10}})));
 protected
   final parameter Boolean computeFlowResistance=(dp_nominal_pos > Modelica.Constants.eps)
     "Flag to enable/disable computation of flow resistance"

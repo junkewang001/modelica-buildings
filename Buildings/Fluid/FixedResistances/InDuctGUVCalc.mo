@@ -3,7 +3,7 @@ model InDuctGUVCalc "HVAC filter"
   extends Buildings.Fluid.BaseClasses.PartialInDuctGUVCalc(
     final m_flow_turbulent = if computeFlowResistance then deltaM * m_flow_nominal_pos else 0);
 
-  parameter Real deltaM(min=1E-6) = 0.3
+  parameter Real deltaM(min=1E-6)=0.3
     "Fraction of nominal mass flow rate where transition to turbulent occurs"
        annotation(Evaluate=true,
                   Dialog(group = "Transition to laminar",

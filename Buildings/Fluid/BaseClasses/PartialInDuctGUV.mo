@@ -27,7 +27,7 @@ partial model PartialInDuctGUV "Partial model for an in duct GUV"
   parameter Modelica.Units.SI.MassFlowRate m_flow_turbulent(min=0)
     "Turbulent flow if |m_flow| >= m_flow_turbulent";
 
-  parameter Real kGUV[Medium.nC](min=0) = 1
+  parameter Real kGUV[Medium.nC](min=0)
     "Inactivation constant";
 
   Modelica.Blocks.Math.BooleanToReal booleanToReal

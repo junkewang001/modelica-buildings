@@ -1,4 +1,4 @@
-within ;
+within Buildings.New;
 model OutputVariableSelection
   "This model set the variables that will be output in .mat file"
   annotation (__Dymola_selections={Selection(name="SelectedVariable",match={
@@ -50,7 +50,7 @@ model OutputVariableSelection
   MatchVariable(name="hvac.fanSup.port_a.p", newName="hvac.fanSup.port_a.p"),
   MatchVariable(name="hvac.TRet.T", newName="hvac.TRet.T"),
   MatchVariable(name="hvac.TSup.T", newName="hvac.TSup.T"),
-  MatchVariable(name="weaBus.TDryBul", newName="weaBus.TDryBul"),
+  MatchVariable(name="weaDat.weaBus.TDryBul", newName="weaDat.weaBus.TDryBul"),
   MatchVariable(name="hvac.conEco.VOut_flow_min", newName="hvac.conEco.VOut_flow_min"),
   MatchVariable(name="hvac.pSetDuc.limPID.u_m", newName="hvac.pSetDuc.limPID.u_m"),
   MatchVariable(name="hvac.dpDisSupFan.p_rel", newName="hvac.dpDisSupFan.p_rel"),
