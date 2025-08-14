@@ -15,7 +15,7 @@ model ASHRAE2006_Dev
       dp_nominal_filter=172,
       dp_nominal_guv=10,
       eff=0.8,
-      kGUV={1,0.9},
+      kGUV={1e6,1e6},
       kpow=10),
     redeclare replaceable Buildings.Examples.VAVReheat.BaseClasses.Floor_virus flo(
       sampleModel=true,
@@ -218,7 +218,8 @@ This is for
           "modelica://Buildings/Resources/Scripts/Dymola/Examples/VAVReheat/ASHRAE2006.mos"
         "Simulate and plot"),
     experiment(
-      StopTime=36000,
+      StartTime=20563200,
+      StopTime=20908800,
       Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"),
     Icon(coordinateSystem(extent={{-100,-100},{100,100}})));

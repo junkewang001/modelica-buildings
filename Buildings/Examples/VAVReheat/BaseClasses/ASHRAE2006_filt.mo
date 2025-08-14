@@ -2,6 +2,7 @@ within Buildings.Examples.VAVReheat.BaseClasses;
 model ASHRAE2006_filt
   "Variable air volume flow system with terminal reheat and ASHRAE 2006 control sequence serving five thermal zones"
   extends Buildings.Examples.VAVReheat.BaseClasses.PartialHVAC_filt(
+    kGUV=kGUV,
     mCooWat_flow_nominal=1*QCooAHU_flow_nominal/cpWat/(-6),
     mHeaVAV_flow_nominal=0.3*mCooVAV_flow_nominal,
     amb(nPorts=3),
