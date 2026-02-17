@@ -134,6 +134,9 @@ model Floor_virus "Model of a floor of the building"
   parameter Real k_quanta(min=0)=5
     "Quanta emission rate, quanta/h";
 
+  parameter Real sOcc(min=0.25, max=1.0) = 1
+    "Occupancy/internal gain scaling factor (25–100%)";
+
   Buildings.ThermalZones.Detailed.MixedAir_virus sou(
     redeclare package Medium = Medium,
     AFlo=AFloSou,
@@ -342,7 +345,7 @@ model Floor_virus "Model of a floor of the building"
     final sampleModel=sampleModel) "Core zone"
     annotation (Placement(transformation(extent={{144,36},{184,76}})));
 
-  Modelica.Blocks.Math.MatrixGain gai(K=20*[0.4; 0.4; 0.2])
+  Modelica.Blocks.Math.MatrixGain gai(K=sOcc*20*[0.4; 0.4; 0.2])
     "Matrix gain to split up heat gain in radiant, convective and latent gain"
     annotation (Placement(transformation(extent={{-100,100},{-80,120}})));
   Modelica.Blocks.Sources.CombiTimeTable intGaiFra(
